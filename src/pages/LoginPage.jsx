@@ -6,7 +6,7 @@ import { useState } from 'react';
 import useAuth from '../hooks/use-auth';
 
 function LoginPage() {
-    const { open } = useAuth();
+    const { open, closeModal } = useAuth();
 
     return (
         <>
@@ -18,7 +18,7 @@ function LoginPage() {
                     <LoginForm />
                 </div>
                 {open &&
-                    <Modal>
+                    <Modal onClose={closeModal}>
                         <RegisterForm />
                     </Modal>}
             </div>
