@@ -3,12 +3,10 @@ import LoginForm from '../features/auth/components/LoginForm';
 import Modal from '../components/Modal';
 import RegisterForm from '../features/auth/components/RegisterForm';
 import { useState } from 'react';
+import useAuth from '../hooks/use-auth';
 
 function LoginPage() {
-    const [open, setOpen] = useState(false);
-
-    const openModal = () => setOpen(true);
-    const closeModal = () => setOpen(false);
+    const { open } = useAuth();
 
     return (
         <>
@@ -17,11 +15,11 @@ function LoginPage() {
                     <img className="object-cover object-center" src="./src/assets/login-img.png" alt="img" />
                 </div>
                 <div className="flex flex-1 w-full justify-center items-center">
-                    <LoginForm openModal={openModal} />
+                    <LoginForm />
                 </div>
                 {open &&
                     <Modal>
-                        <RegisterForm closeModal={closeModal} />
+                        <RegisterForm />
                     </Modal>}
             </div>
         </>
