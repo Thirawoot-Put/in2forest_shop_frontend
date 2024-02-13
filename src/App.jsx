@@ -1,11 +1,10 @@
+import Router from "./route"
 
 function App() {
 
   return (
     <>
-      <div className="bg-green-500 text-lg">
-        Hello
-      </div>
+      <Router />
     </>
   )
 }
