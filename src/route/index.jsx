@@ -10,6 +10,8 @@ import OrdersPage from "../pages/OrdersPage";
 import OrderDetailPage from "../pages/OrderDetailPage";
 import PaymentPage from "../pages/PaymentPage";
 import ProfileInfoPage from "../pages/ProfileInfoPage";
+import Header from "../layouts/Header";
+import Footter from "../layouts/Footter";
 
 const router = createBrowserRouter([
     {
@@ -23,11 +25,25 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <HomePage />
+        element:
+            (
+                <>
+                    <Header />
+                    <HomePage />
+                    <Footter />
+                </>
+            )
     },
     {
         path: '/product/:productId',
-        element: <ProductDetailPage />
+        element:
+            (
+                <>
+                    <Header />
+                    <ProductDetailPage />
+                    <Footter />
+                </>
+            )
     },
     {
         path: '/',
