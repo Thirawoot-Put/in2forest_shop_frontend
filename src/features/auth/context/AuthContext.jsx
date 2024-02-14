@@ -7,19 +7,22 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
     const [open, setOpen] = useState(false);
+    const [authUser, setAuthUser] = useState(null);
 
     const openModal = () => setOpen(true);
     const closeModal = () => setOpen(false);
 
     const register = async data => {
         const res = await authApi.register(data);
+        setAuthUser(res.data.newUser);
         storeToken(res.data.accessToken);
-    }
+    };
 
     return (
         <AuthContext.Provider
             value={{
                 open,
+                authUser,
                 openModal,
                 closeModal,
                 register
