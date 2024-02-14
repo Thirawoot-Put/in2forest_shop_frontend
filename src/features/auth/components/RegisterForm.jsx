@@ -26,13 +26,19 @@ function RegisterForm() {
     };
 
     const handleSubmit = async e => {
-        e.preventDefault();
-        const valError = validateRegister(input);
-        if (valError) {
-            setError(valError);
+        try {
+            e.preventDefault();
+            const valError = validateRegister(input);
+            if (valError) {
+                return setError(valError);
+            }
+            await register(input);
+            closeModal();
+        } catch (error) {
+            if (error.response.data.message === 'email_already_use') {
+                return setError({ email: 'Email address already in use' })
+            }
         }
-        await register(input);
-        closeModal();
     };
 
     return (
