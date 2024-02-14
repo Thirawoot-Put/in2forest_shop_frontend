@@ -6,7 +6,7 @@ import validateRegister from "../validations/validate-register";
 
 
 function RegisterForm() {
-    const { closeModal } = useAuth();
+    const { closeModal, register } = useAuth();
 
     const [input, setInput] = useState(
         {
@@ -25,14 +25,14 @@ function RegisterForm() {
         setError({});
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const valError = validateRegister(input);
         if (valError) {
             setError(valError);
         }
-        console.log(error)
-        // closeModal();
+        await register(input);
+        closeModal();
     };
 
     return (
