@@ -1,13 +1,31 @@
 import { useState } from "react";
 import { createContext } from "react";
 import * as authApi from "../../../api/auth";
-import { storeToken } from "../../../utils/local-storage";
+import { getToken, storeToken } from "../../../utils/local-storage";
+import { useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
     const [open, setOpen] = useState(false);
     const [authUser, setAuthUser] = useState(null);
+
+    const [firstLoading, setFirstLoading] = useState(true);
+
+    useEffect(() => {
+        if (getToken()) {
+            authApi.getMe()
+                .then(res => {
+                    setAuthUser(res.data.user);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .finally(() => setFirstLoading(false));
+        } else {
+            setFirstLoading(false);
+        }
+    }, []);
 
     const openModal = () => setOpen(true);
     const closeModal = () => setOpen(false);
@@ -18,14 +36,22 @@ export default function AuthContextProvider({ children }) {
         storeToken(res.data.accessToken);
     };
 
+    const login = async data => {
+        const res = await authApi.login(data);
+        setAuthUser(res.data.user);
+        storeToken(res.data.token);
+    }
+
     return (
         <AuthContext.Provider
             value={{
+                firstLoading,
                 open,
                 authUser,
                 openModal,
                 closeModal,
-                register
+                register,
+                login
             }}>
             {children}
         </AuthContext.Provider>

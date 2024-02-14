@@ -5,7 +5,7 @@ import useAuth from "../../../hooks/use-auth"
 import validateLogin from "../validations/validate-login";
 
 function LoginForm() {
-    const { openModal } = useAuth();
+    const { openModal, login } = useAuth();
 
     const [input, setInput] = useState({ email: '', password: '' });
     const [error, setError] = useState({});
@@ -21,6 +21,7 @@ function LoginForm() {
         if (valError) {
             setError(valError);
         }
+        login(input);
     }
 
     return (
