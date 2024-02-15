@@ -30,8 +30,8 @@ function LoginForm() {
             <Input placeholder="example@mail.com" title="Email address" name="email" onChange={handleChange} errorMsg={error.email} />
             <Input type="password" placeholder="password" title="Password" name="password" onChange={handleChange} errorMsg={error.password} />
             <div className="flex gap-6 justify-center py-10">
-                <Button color="secondary" width="full" onClick={openModal}>Register</Button>
-                <Button color="primary" width="full" type="submit">Login</Button>
+                <Button color="secondary" width="44" onClick={openModal}>Register</Button>
+                <Button color="primary" width="44" type="submit">Login</Button>
             </div>
         </form>
     )

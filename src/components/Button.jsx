@@ -4,11 +4,13 @@ const colorClass = {
 }
 
 const widthClass = {
-    full: 'w-full'
+    full: 'w-full',
+    "44": "w-44"
 }
 
 function Button({ children, color, width, onClick, type = "button" }) {
     const className = `
+    btn
     ${color ? colorClass[color] : ''} 
     ${width ? widthClass[width] : ''} 
     font-bold text-xl px-12 py-2 rounded-2xl shadow-[2px_2px_2px_rgb(0,0,0,0.2)]

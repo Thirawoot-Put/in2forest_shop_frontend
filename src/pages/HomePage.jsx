@@ -1,10 +1,15 @@
 import React from 'react'
-import Header from '../layouts/Header'
+import Hero from '../features/home/components/Hero'
+import LogoList from '../features/home/components/LogoList'
+import ProductAllSections from '../features/home/components/ProductAllSections'
 
 function HomePage() {
     return (
         <>
-            <div>Homepage</div>
+            <Hero />
+            <LogoList />
+            <ProductAllSections />
+            {/* <button className='btn'>Hi</button> */}
         </>
 
     )
