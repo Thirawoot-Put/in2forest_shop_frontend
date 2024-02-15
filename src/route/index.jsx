@@ -12,6 +12,11 @@ import PaymentPage from "../pages/PaymentPage";
 import ProfileInfoPage from "../pages/ProfileInfoPage";
 import Header from "../layouts/Header";
 import Footter from "../layouts/Footter";
+import AdminOrdersPage from "../pages/AdminOrdersPage";
+import AdminContainer from "../layouts/AdminContainer";
+import AdminAddProductPage from "../pages/AdminAddProductPage";
+import AdminEditProductPage from "../pages/AdminEditProductPage";
+
 
 const router = createBrowserRouter([
     {
@@ -72,6 +77,18 @@ const router = createBrowserRouter([
             {
                 path: 'profile/:userId',
                 element: <ProfileInfoPage />
+            },
+            {
+                path: 'admin',
+                element: <AdminOrdersPage />
+            },
+            {
+                path: 'admin/product',
+                element: <AdminAddProductPage />
+            },
+            {
+                path: 'admin/product/:productId',
+                element: <AdminEditProductPage />
             }
         ]
     }
