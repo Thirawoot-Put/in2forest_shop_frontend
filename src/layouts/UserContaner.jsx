@@ -5,7 +5,7 @@ import Footter from './Footter'
 
 function UserContaner() {
     return (
-        <div class="flex flex-col h-screen">
+        <div>
             <Header />
             <Outlet />
             <Footter />

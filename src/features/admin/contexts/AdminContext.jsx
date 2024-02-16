@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createContext } from "react";
 import * as adminApi from '../../../api/admin'
+import appenDataWithImage from "../../../utils/appenDataWithImage";
 
 export const AdminContext = createContext();
 
@@ -29,6 +30,10 @@ export default function AdminContextProvider({ children }) {
         setEntireProduct(allProduct)
     }
 
+    const editProductById = async (productId, editData) => {
+        const editProduct = adminApi.editProductById(productId, editData)
+    }
+
     const handleChange = e => {
         if (e.target.name === 'mainImage') {
             setProduct({ ...product, mainImage: e.target.files[0] })
@@ -37,17 +42,10 @@ export default function AdminContextProvider({ children }) {
         }
     }
 
-
     const handleSubmit = async e => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('productName', product.productName)
-        formData.append('size', product.size)
-        formData.append('productDetail', product.productDetail)
-        formData.append('defect', product.defect)
-        formData.append('price', product.price)
-        formData.append('productTypeId', product.productTypeId)
-        formData.append('mainImage', product.mainImage)
+        appenDataWithImage(formData, product)
         await adminApi.addProduct(formData)
         setProduct(initial)
     }
@@ -62,7 +60,7 @@ export default function AdminContextProvider({ children }) {
                 getAllTypes,
                 handleChange,
                 handleSubmit,
-                getAllProduct
+                getAllProduct,
             }}>
             {children}
         </AdminContext.Provider>

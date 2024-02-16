@@ -10,8 +10,9 @@ function AdminEditProductPage() {
         getAllProduct();
     }, [])
 
+
     return (
-        <div className=' w-full flex flex-col justify-center items-center'>
+        <div className='h-screen w-full flex flex-col justify-center items-center pb-4'>
             <ProductList />
         </div>
     )
