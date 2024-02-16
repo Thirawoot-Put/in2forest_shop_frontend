@@ -79,7 +79,7 @@ const router = createBrowserRouter([
                 element: <ProfileInfoPage />
             },
             {
-                path: 'admin',
+                path: 'admin/orders',
                 element: <AdminOrdersPage />
             },
             {
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
                 element: <AdminAddProductPage />
             },
             {
-                path: 'admin/product/:productId',
+                path: 'admin',
                 element: <AdminEditProductPage />
             }
         ]

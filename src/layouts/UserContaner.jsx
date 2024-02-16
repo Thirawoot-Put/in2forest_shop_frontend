@@ -5,11 +5,11 @@ import Footter from './Footter'
 
 function UserContaner() {
     return (
-        <>
+        <div class="flex flex-col h-screen">
             <Header />
             <Outlet />
             <Footter />
-        </>
+        </div>
     )
 }
 

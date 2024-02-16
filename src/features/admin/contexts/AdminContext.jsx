@@ -17,10 +17,16 @@ const initial = {
 export default function AdminContextProvider({ children }) {
     const [product, setProduct] = useState(initial);
     const [allProductTypes, setAllProductTypes] = useState([]);
+    const [entireProduct, setEntireProduct] = useState([]);
 
     const getAllTypes = async () => {
         const { data: { allTypes } } = await adminApi.getAllProductTypes();
         setAllProductTypes(allTypes)
+    }
+
+    const getAllProduct = async () => {
+        const { data: { allProduct } } = await adminApi.getAllProduct();
+        setEntireProduct(allProduct)
     }
 
     const handleChange = e => {
@@ -30,6 +36,7 @@ export default function AdminContextProvider({ children }) {
             setProduct({ ...product, [e.target.name]: e.target.value });
         }
     }
+
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -41,15 +48,23 @@ export default function AdminContextProvider({ children }) {
         formData.append('price', product.price)
         formData.append('productTypeId', product.productTypeId)
         formData.append('mainImage', product.mainImage)
-        console.log(product)
-        console.log(product.mainImage)
-        console.log(formData)
         await adminApi.addProduct(formData)
         setProduct(initial)
     }
 
 
     return (
-        <AdminContext.Provider value={{ product, allProductTypes, getAllTypes, handleChange, handleSubmit }}>{children}</AdminContext.Provider>
+        <AdminContext.Provider
+            value={{
+                product,
+                allProductTypes,
+                entireProduct,
+                getAllTypes,
+                handleChange,
+                handleSubmit,
+                getAllProduct
+            }}>
+            {children}
+        </AdminContext.Provider>
     )
 }

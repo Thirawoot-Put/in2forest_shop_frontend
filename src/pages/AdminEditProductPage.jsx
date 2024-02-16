@@ -1,8 +1,19 @@
 import React from 'react'
+import ProductList from '../features/admin/conponents/ProductList'
+import useAdmin from '../hooks/use-admin';
+import { useEffect } from 'react';
 
 function AdminEditProductPage() {
+    const { getAllProduct } = useAdmin();
+
+    useEffect(() => {
+        getAllProduct();
+    }, [])
+
     return (
-        <div>AdminEditProductPage</div>
+        <div className=' w-full flex flex-col justify-center items-center'>
+            <ProductList />
+        </div>
     )
 }
 
