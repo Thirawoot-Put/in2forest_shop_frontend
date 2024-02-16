@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createContext } from "react";
 import * as adminApi from '../../../api/admin'
+import * as userApi from '../../../api/user'
 import appenDataWithImage from "../../../utils/appenDataWithImage";
 
 export const AdminContext = createContext();
@@ -21,17 +22,13 @@ export default function AdminContextProvider({ children }) {
     const [entireProduct, setEntireProduct] = useState([]);
 
     const getAllTypes = async () => {
-        const { data: { allTypes } } = await adminApi.getAllProductTypes();
+        const { data: { allTypes } } = await userApi.getAllProductTypes();
         setAllProductTypes(allTypes)
     }
 
     const getAllProduct = async () => {
-        const { data: { allProduct } } = await adminApi.getAllProduct();
+        const { data: { allProduct } } = await userApi.getAllProduct();
         setEntireProduct(allProduct)
-    }
-
-    const editProductById = async (productId, editData) => {
-        const editProduct = adminApi.editProductById(productId, editData)
     }
 
     const handleChange = e => {

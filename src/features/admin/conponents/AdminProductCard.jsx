@@ -8,6 +8,7 @@ import Modal from '../../../components/Modal'
 import ProductForm from '../../../components/ProductForm';
 import { useState } from 'react';
 import * as adminApi from '../../../api/admin'
+import * as userApi from '../../../api/user'
 import LoadingBar from '../../../components/LoadingBar';
 import { useEffect } from 'react';
 import appenDataWithImage from '../../../utils/appenDataWithImage';
@@ -36,7 +37,7 @@ function AdminProductCard() {
     }
 
     const handleClickEdit = async (id, e) => {
-        const { data: { oldData } } = await adminApi.getProductById(id)
+        const { data: { oldData } } = await userApi.getProductById(id)
         // delete oldData.mainImage
         oldData.mainImage = ''
         setUpdateData(oldData)
@@ -56,11 +57,17 @@ function AdminProductCard() {
     }
 
     const handleSubmit = async e => {
-        e.preventDefault();
-        const formData = new FormData();
-        appenDataWithImage(formData, updateData)
-        await adminApi.editProductById(updateData.id, formData)
-        handleCloseModal()
+        try {
+            e.preventDefault();
+            const formData = new FormData();
+            appenDataWithImage(formData, updateData)
+            await adminApi.editProductById(updateData.id, formData)
+            handleCloseModal()
+        } catch (err) {
+            console.log(err)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
