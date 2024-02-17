@@ -8,7 +8,7 @@ import Modal from '../../../components/Modal'
 import ProductForm from '../../../components/ProductForm';
 import { useState } from 'react';
 import * as adminApi from '../../../api/admin'
-import * as userApi from '../../../api/user'
+import * as productApi from '../../../api/product'
 import LoadingBar from '../../../components/LoadingBar';
 import { useEffect } from 'react';
 import appenDataWithImage from '../../../utils/appenDataWithImage';
@@ -37,10 +37,10 @@ function AdminProductCard() {
     }
 
     const handleClickEdit = async (id, e) => {
-        const { data: { oldData } } = await userApi.getProductById(id)
-        // delete oldData.mainImage
-        oldData.mainImage = ''
-        setUpdateData(oldData)
+        const { data: { productById } } = await productApi.getProductById(id)
+        // delete productById.mainImage
+        productById.mainImage = ''
+        setUpdateData(productById)
         setOpen(true)
     }
 

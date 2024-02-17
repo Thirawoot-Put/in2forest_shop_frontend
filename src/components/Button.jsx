@@ -8,7 +8,7 @@ const widthClass = {
     "44": "w-44"
 }
 
-function Button({ children, color, width, onClick, type = "button" }) {
+function Button({ children, color = "primary", width, onClick, type = "button" }) {
     const className = `
     btn
     ${color ? colorClass[color] : ''} 

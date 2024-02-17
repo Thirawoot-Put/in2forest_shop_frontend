@@ -3,16 +3,16 @@ import App from './App'
 import './index.css'
 import AuthContextProvider from './features/auth/context/AuthContext'
 import AdminContextProvider from './features/admin/contexts/AdminContext'
-import UserContextProvider from './features/home/contexts/userContext'
+import ProductContextProvider from './features/home/contexts/ProductContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <AuthContextProvider>
-    <UserContextProvider>
+    <ProductContextProvider>
       <AdminContextProvider>
         <App />
       </AdminContextProvider>
-    </UserContextProvider>
+    </ProductContextProvider>
   </AuthContextProvider>
   // </React.StrictMode>,
 )

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 
 function ProductSection({ type, products }) {
+
     const [showedProducts, setShowedProduct] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -17,6 +18,7 @@ function ProductSection({ type, products }) {
         const displayedProducts = products.slice(start, end)
         setShowedProduct(displayedProducts)
     }, [currentPage])
+
     return (
         <div className='flex justify-center px-20 pb-2 '>
             <div>
@@ -29,7 +31,7 @@ function ProductSection({ type, products }) {
                 <div className='flex justify-center items-center'>
                     <div className="join">
                         <button className="join-item btn" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>«</button>
-                        <button className="join-item btn">{currentPage}</button>
+                        <button className="join-item btn cursor-text">{currentPage}</button>
                         <button className="join-item btn" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === Math.ceil(products.length / 5)}>»</button>
                     </div>
                 </div>

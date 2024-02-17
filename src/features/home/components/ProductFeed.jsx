@@ -1,9 +1,9 @@
 import React from 'react'
 import ProductSection from './ProductSection'
-import useUser from '../../../hooks/use-user';
+import useProduct from '../../../hooks/use-product';
 
 function ProductAllSections() {
-    const { allTypesWithProducts } = useUser();
+    const { allTypesWithProducts } = useProduct();
 
     return (
         <div className='bg-[#f9f9f9]'>
