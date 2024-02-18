@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createContext } from "react";
 import * as authApi from "../../../api/auth";
-import { getToken, storeToken } from "../../../utils/local-storage";
+import { getToken, removeToken, storeToken } from "../../../utils/local-storage";
 import { useEffect } from "react";
 
 export const AuthContext = createContext();
@@ -42,6 +42,11 @@ export default function AuthContextProvider({ children }) {
         storeToken(res.data.token);
     }
 
+    const logout = e => {
+        setAuthUser(null)
+        removeToken()
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -51,7 +56,8 @@ export default function AuthContextProvider({ children }) {
                 openModal,
                 closeModal,
                 register,
-                login
+                login,
+                logout
             }}>
             {children}
         </AuthContext.Provider>

@@ -1,10 +1,8 @@
-import React from 'react'
-import AddProductForm from '../features/admin/conponents/AddProductForm'
+import React from "react";
+import AddProductForm from "../features/admin/components/AddProductForm";
 
 function AdminAddProductPage() {
-    return (
-        <AddProductForm />
-    )
+  return <AddProductForm />;
 }
 
-export default AdminAddProductPage
+export default AdminAddProductPage;
