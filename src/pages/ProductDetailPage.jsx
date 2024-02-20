@@ -6,6 +6,7 @@ import useProduct from "../hooks/use-product";
 import useAuth from "../hooks/use-auth";
 import { useNavigate } from "react-router-dom";
 import useCart from "../hooks/use-cart";
+import { toast } from "react-toastify";
 
 function ProductDetailPage() {
   const navigate = useNavigate();
@@ -23,9 +24,12 @@ function ProductDetailPage() {
         productPrice: productObj.price,
       };
       await addToCart(productTarget);
-      navigate("/");
+
+      toast.success("Add product to cart success");
     } catch (err) {
       console.log(err.response?.data.message);
+    } finally {
+      navigate("/cart");
     }
   };
 

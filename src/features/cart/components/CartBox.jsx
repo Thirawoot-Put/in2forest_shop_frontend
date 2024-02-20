@@ -2,9 +2,6 @@ import React from "react";
 import ProductCardHorizontal from "../../../components/ProductCardHorizontal";
 import { HiTrash } from "react-icons/hi2";
 import useCart from "../../../hooks/use-cart";
-import { useState } from "react";
-import { useEffect } from "react";
-import LoadingBar from "../../../components/LoadingBar";
 
 function CartBox({ onClick }) {
   const { productsInUserCart } = useCart();

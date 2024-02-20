@@ -60,6 +60,7 @@ function AdminProductCard() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true);
       const formData = new FormData();
       appendDataWithImage(formData, updateData);
       await adminApi.editProductById(updateData.id, formData);

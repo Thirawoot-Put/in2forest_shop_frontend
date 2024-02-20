@@ -1,43 +1,97 @@
 import React from "react";
 import Button from "../../../components/Button";
 import useCart from "../../../hooks/use-cart";
-import { useState } from "react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../../components/Modal";
+import { useState } from "react";
+import AddAddressForm from "./AddAddressForm";
+import { useEffect } from "react";
+import useAuth from "../../../hooks/use-auth";
+import useUser from "../../../hooks/use-user";
+import * as userApi from "../../../api/user";
 
 function OrderSummaryBox() {
   const navigate = useNavigate();
-  const { subTotal } = useCart();
+
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(0);
+  const { authUser } = useAuth();
+  const { productsInUserCart, subTotal } = useCart();
+  const { allAddresses, getAllReceiveAddress } = useUser();
 
   const handleClickCheckOut = (e) => {
     navigate("/payment");
   };
 
+  const closModal = () => setOpen(false);
+
+  const handleClickAddAddress = (e) => {
+    setOpen(true);
+  };
+
+  useEffect(() => {
+    getAllReceiveAddress(authUser.id);
+  }, [loading]);
+
+  console.log(productsInUserCart);
+  console.log(authUser);
+
   return (
-    <div className="flex flex-col items-center h-96 w-5/12 border p-4 border-black rounded-2xl justify-between">
-      <h1 className="font-semibold text-xl">Order Summary</h1>
-      <div className="w-full flex flex-col gap-4 text-lg">
-        <div className="flex justify-between">
-          <p className="text-gray-400">subTotal</p>
-          <p className="font-semibold">THB {subTotal}</p>
+    <>
+      <div className="flex flex-col items-center h-96 w-5/12 border p-4 border-black rounded-2xl justify-between">
+        <h1 className="font-semibold text-xl">Order Summary</h1>
+        <div className="w-full flex flex-col gap-4 text-lg">
+          <div className="flex justify-between">
+            <p className="text-gray-400">subTotal</p>
+            <p className="font-semibold">THB {subTotal}</p>
+          </div>
+          <div className="flex justify-between">
+            <p className="text-gray-400">Delivery fee</p>
+            <p className="font-semibold">free</p>
+          </div>
+          <hr />
+          <div className="flex justify-between">
+            <p>Total</p>
+            <p className="font-semibold text-2xl">THB {subTotal}</p>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <p className="text-gray-400">Delivery fee</p>
-          <p className="font-semibold">free</p>
+        <div className="flex w-full gap-2">
+          <select
+            className="select select-bordered w-full max-w-xs bg-[#F2F0F1] text-center"
+            onChange={(e) => setSelectedAddress(e.target.value)}
+          >
+            <option disabled selected value="">
+              Select receiving address
+            </option>
+            {allAddresses.map((el) => (
+              <option value={el.id}>
+                {el.addressDetail} {el.subdistrict} {el.district} {el.province}{" "}
+                {el.zipCode} {el.receiverMobile}
+              </option>
+            ))}
+          </select>
+          <Button
+            onClick={handleClickAddAddress}
+            width="w-44"
+            text="text-md"
+            color="secondary"
+          >
+            Add address
+          </Button>
         </div>
-        <hr />
-        <div className="flex justify-between">
-          <p>Total</p>
-          <p className="font-semibold text-2xl">THB {subTotal}</p>
-        </div>
+        <Button onClick={handleClickCheckOut}>Check out</Button>
       </div>
-      <div className="text-center w-full p-2 bg-[#F2F0F1] border rounded-xl">
-        Address
-      </div>
-      <Button width="full" onClick={handleClickCheckOut}>
-        Check out
-      </Button>
-    </div>
+      {open && (
+        <Modal onClose={closModal}>
+          <AddAddressForm
+            onClose={closModal}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        </Modal>
+      )}
+    </>
   );
 }
 

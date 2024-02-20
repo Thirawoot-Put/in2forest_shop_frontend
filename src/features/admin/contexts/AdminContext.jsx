@@ -3,6 +3,7 @@ import { createContext } from "react";
 import * as adminApi from "../../../api/admin";
 import * as productApi from "../../../api/product";
 import appendDataWithImage from "../../../utils/appendDataWithImage";
+import { toast } from "react-toastify";
 
 export const AdminContext = createContext();
 
@@ -43,8 +44,7 @@ export default function AdminContextProvider({ children }) {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const addProduct = async () => {
     const formData = new FormData();
     appendDataWithImage(formData, product);
     await adminApi.addProduct(formData);
@@ -59,7 +59,7 @@ export default function AdminContextProvider({ children }) {
         entireProduct,
         getAllTypes,
         handleChange,
-        handleSubmit,
+        addProduct,
         getAllProduct,
       }}
     >

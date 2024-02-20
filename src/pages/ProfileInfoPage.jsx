@@ -6,6 +6,7 @@ import useUser from "../hooks/use-user";
 import { useEffect } from "react";
 import LoadingBar from "../components/LoadingBar";
 import * as authApi from "../api/auth";
+import { toast } from "react-toastify";
 
 function ProfileInfoPage() {
   const [isEdit, setIsEdit] = useState(false);
@@ -23,6 +24,7 @@ function ProfileInfoPage() {
     try {
       setLoading(true);
       await submitEditProfile();
+      toast.success("Edit profile success");
     } catch (error) {
       console.log(error);
     } finally {
@@ -46,7 +48,7 @@ function ProfileInfoPage() {
     <>
       {loading && <LoadingBar />}
       <div className="flex justify-center items-center py-8">
-        <div className="min-h-80 flex flex-col justify-between">
+        <div className="min-h-64 flex flex-col justify-between">
           {isEdit ? (
             <UserInfoForm
               formName="Edit profile"

@@ -61,7 +61,7 @@ function ProductForm({ title, onSubmit, onChange, data }) {
           />
         </div>
         <div className="pt-10">
-          <Button color="primary" width="full" type="submit">
+          <Button color="primary" type="submit">
             Save
           </Button>
         </div>

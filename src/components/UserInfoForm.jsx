@@ -63,9 +63,7 @@ function UserInfoForm({
           </>
         )}
         <div className="w-full pt-6">
-          <Button width="full" type="submit">
-            {btnName}
-          </Button>
+          <Button type="submit">{btnName}</Button>
         </div>
       </div>
     </form>
