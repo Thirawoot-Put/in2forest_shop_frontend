@@ -3,11 +3,6 @@ const colorClass = {
   secondary: "bg-[#d9d9d9] hover:bg-[#d0d0d0] border border-[#d0d0d0]",
 };
 
-const widthClass = {
-  full: "w-full",
-  44: "w-44",
-};
-
 function Button({
   children,
   color = "primary",

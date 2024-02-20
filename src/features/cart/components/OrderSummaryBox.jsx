@@ -8,7 +8,8 @@ import AddAddressForm from "./AddAddressForm";
 import { useEffect } from "react";
 import useAuth from "../../../hooks/use-auth";
 import useUser from "../../../hooks/use-user";
-import * as userApi from "../../../api/user";
+import * as orderApi from "../../../api/order";
+import { toast } from "react-toastify";
 
 function OrderSummaryBox() {
   const navigate = useNavigate();
@@ -20,8 +21,20 @@ function OrderSummaryBox() {
   const { productsInUserCart, subTotal } = useCart();
   const { allAddresses, getAllReceiveAddress } = useUser();
 
-  const handleClickCheckOut = (e) => {
-    navigate("/payment");
+  const handleClickCheckOut = async (e) => {
+    try {
+      if (selectedAddress === 0) {
+        toast.error("Please select receiver address before checkout");
+        return;
+      }
+      const result = await orderApi.createUserOrder({
+        addressId: +selectedAddress,
+      });
+      console.log(result);
+      navigate("/payment");
+    } catch (error) {
+      toast.error(error.response?.data.message);
+    }
   };
 
   const closModal = () => setOpen(false);
@@ -33,9 +46,6 @@ function OrderSummaryBox() {
   useEffect(() => {
     getAllReceiveAddress(authUser.id);
   }, [loading]);
-
-  console.log(productsInUserCart);
-  console.log(authUser);
 
   return (
     <>
@@ -80,6 +90,9 @@ function OrderSummaryBox() {
             Add address
           </Button>
         </div>
+        <Button color="secondary" onClick={() => navigate("/")}>
+          Continue shopping
+        </Button>
         <Button onClick={handleClickCheckOut}>Check out</Button>
       </div>
       {open && (
