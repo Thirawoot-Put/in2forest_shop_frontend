@@ -8,6 +8,7 @@ export const CartContext = createContext();
 
 export default function CartContextProvider({ children }) {
   const [productsInUserCart, setProductsInUserCart] = useState();
+  const [subTotal, setSubTotal] = useState(0);
 
   const addToCart = async (data) => {
     const {
@@ -24,13 +25,21 @@ export default function CartContextProvider({ children }) {
   };
 
   const removeProductFromCart = async (id) => {
-    const result = await cartApi.deleteProductInCart(id);
-    console.log(result);
+    await cartApi.deleteProductInCart(id);
   };
 
-  // useEffect(() => {
-  //   getAllInCart();
-  // }, []);
+  const calculateTotal = async () => {
+    const {
+      data: { allInCart },
+    } = await cartApi.fetchAllInUserCart();
+    const result = allInCart.reduce((acc, el) => acc + el.productPrice, 0);
+    setSubTotal(result);
+  };
+
+  useEffect(() => {
+    getAllInCart();
+    calculateTotal();
+  }, []);
 
   return (
     <CartContext.Provider
@@ -39,6 +48,8 @@ export default function CartContextProvider({ children }) {
         addToCart,
         productsInUserCart,
         removeProductFromCart,
+        subTotal,
+        calculateTotal,
       }}
     >
       {children}

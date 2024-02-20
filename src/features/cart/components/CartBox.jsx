@@ -6,28 +6,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import LoadingBar from "../../../components/LoadingBar";
 
-function CartBox() {
-  const { getAllInCart, productsInUserCart, removeProductFromCart } = useCart();
-  const [loading, setLoading] = useState(false);
-
-  const handleClick = (e) => {
-    try {
-      setLoading(true);
-      removeProductFromCart(id);
-    } catch (err) {
-      console.error();
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getAllInCart();
-  }, [loading]);
-
-  if (loading) {
-    return <LoadingBar />;
-  }
+function CartBox({ onClick }) {
+  const { productsInUserCart } = useCart();
 
   return (
     <div className="w-7/12 border p-4 border-black rounded-2xl min-h-80 flex flex-col">
@@ -36,7 +16,7 @@ function CartBox() {
           <ProductCardHorizontal key={el.id} data={el.product} width="w-full">
             <button
               className="text-xl text-red-500"
-              onClick={(e) => removeProductFromCart(el.id)}
+              onClick={(e) => onClick(el.id)}
             >
               <HiTrash />
             </button>

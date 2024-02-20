@@ -58,11 +58,11 @@ const router = createBrowserRouter([
         element: <CartPage />,
       },
       {
-        path: "orders/:userId",
+        path: "orders",
         element: <OrdersPage />,
       },
       {
-        path: "order/:orderId",
+        path: "orders/:orderId",
         element: <OrderDetailPage />,
       },
       {
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
         element: <PaymentPage />,
       },
       {
-        path: "profile/:userId",
+        path: "profile",
         element: <ProfileInfoPage />,
       },
       {

@@ -36,7 +36,9 @@ function Header() {
             {authUser ? (
               <>
                 <li>
-                  <a>Profile information</a>
+                  <a onClick={() => navigate("/profile")}>
+                    Profile information
+                  </a>
                 </li>
                 <li>
                   <a

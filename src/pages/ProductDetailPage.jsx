@@ -15,7 +15,6 @@ function ProductDetailPage() {
   const { getProductById, productObj } = useProduct();
 
   const handleClick = async (e) => {
-    console.log(authUser);
     try {
       const productTarget = {
         userId: authUser.id,
