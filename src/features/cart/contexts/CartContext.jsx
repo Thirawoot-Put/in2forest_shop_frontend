@@ -8,8 +8,9 @@ import useAuth from "../../../hooks/use-auth";
 export const CartContext = createContext();
 
 export default function CartContextProvider({ children }) {
-  const [productsInUserCart, setProductsInUserCart] = useState();
+  const [productsInUserCart, setProductsInUserCart] = useState(null);
   const [subTotal, setSubTotal] = useState(0);
+  const [isIncludeSoldOut, setIsInCludeSoldOut] = useState(false);
 
   const addToCart = async (data) => {
     const {
@@ -37,6 +38,17 @@ export default function CartContextProvider({ children }) {
     setSubTotal(result);
   };
 
+  const hasSoldOut = () => {
+    const foundSoldOut = productsInUserCart.filter(
+      (el) => el.product.status === "SOLDOUT"
+    );
+    if (foundSoldOut.length !== 0) {
+      setIsInCludeSoldOut(true);
+    } else {
+      setIsInCludeSoldOut(false);
+    }
+  };
+
   useEffect(() => {
     getAllInCart();
     calculateTotal();
@@ -51,6 +63,8 @@ export default function CartContextProvider({ children }) {
         removeProductFromCart,
         subTotal,
         calculateTotal,
+        hasSoldOut,
+        isIncludeSoldOut,
       }}
     >
       {children}

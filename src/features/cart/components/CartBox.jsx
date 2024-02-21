@@ -2,9 +2,14 @@ import React from "react";
 import ProductCardHorizontal from "../../../components/ProductCardHorizontal";
 import { HiTrash } from "react-icons/hi2";
 import useCart from "../../../hooks/use-cart";
+import { useEffect } from "react";
 
 function CartBox({ onClick }) {
-  const { productsInUserCart } = useCart();
+  const { productsInUserCart, hasSoldOut } = useCart();
+
+  useEffect(() => {
+    hasSoldOut();
+  }, [productsInUserCart]);
 
   return (
     <div className="w-7/12 border p-4 border-black rounded-2xl min-h-80 flex flex-col">

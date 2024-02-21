@@ -12,7 +12,6 @@ export default function OrderContextProvider({ children }) {
     const {
       data: { userOrders },
     } = await orderApi.getAllUserOrders();
-    console.log(userOrders);
     setAllUserOrders(userOrders);
   };
 

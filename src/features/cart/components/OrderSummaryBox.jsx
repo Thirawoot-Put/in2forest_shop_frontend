@@ -19,7 +19,7 @@ function OrderSummaryBox() {
   const [loading, setLoading] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(0);
   const { authUser } = useAuth();
-  const { productsInUserCart, subTotal } = useCart();
+  const { productsInUserCart, subTotal, isIncludeSoldOut } = useCart();
   const { allAddresses, getAllReceiveAddress } = useUser();
   const { setTargetOrder } = useOrder();
 
@@ -79,7 +79,7 @@ function OrderSummaryBox() {
               Select receiving address
             </option>
             {allAddresses.map((el) => (
-              <option value={el.id}>
+              <option key={el.id} value={el.id}>
                 {el.addressDetail} {el.subdistrict} {el.district} {el.province}{" "}
                 {el.zipCode} {el.receiverMobile}
               </option>
@@ -97,7 +97,14 @@ function OrderSummaryBox() {
         <Button color="secondary" onClick={() => navigate("/")}>
           Continue shopping
         </Button>
-        <Button onClick={handleClickCheckOut}>Check out</Button>
+        {isIncludeSoldOut ? (
+          <h1 className="border border-red-500 p-1 bg-red-200 rounded-lg text-center">
+            There are sold out product in your cart, may be another user has
+            checkout before your, please it remove before checkout.
+          </h1>
+        ) : (
+          <Button onClick={handleClickCheckOut}>Check out</Button>
+        )}
       </div>
       {open && (
         <Modal onClose={closModal}>

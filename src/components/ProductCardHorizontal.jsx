@@ -14,13 +14,22 @@ function ProductCardHorizontal({
   data = defaultData,
   width = "w-[44rem]",
 }) {
+  console.log(data.status);
   return (
-    <div className={`${width} h-full`}>
+    <div
+      className={`${width} h-full ${
+        data.status === "SOLDOUT" ? "text-red-500" : ""
+      }`}
+    >
       <div className="card card-side bg-base-100 border-gray-500 h-32 ">
         <div className="rounded-xl flex justify-center items-center">
           <img
             className="w-32"
-            src={data.mainImage || "/src/assets/default-img.png"}
+            src={
+              data.status === "SOLDOUT"
+                ? "src/assets/pic/sample-product/sold-out.jpg"
+                : data.mainImage || "/src/assets/default-img.png"
+            }
             alt="main-image"
           />
         </div>
