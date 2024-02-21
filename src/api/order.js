@@ -8,4 +8,4 @@ export const uploadPaySlip = (id, data) => axios.patch(`/payment/${id}`, data);
 export const getAllUserOrders = () => axios.get("/orders");
 
 // Admin order Api
-export const adminGetAllOrders = () => axios.get("/orders/admin");
+export const adminGetAllOrders = () => axios.get("/admin/orders");

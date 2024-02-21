@@ -11,9 +11,12 @@ import useUser from "../../../hooks/use-user";
 import * as orderApi from "../../../api/order";
 import { toast } from "react-toastify";
 import useOrder from "../../../hooks/use-order";
+import useProduct from "../../../hooks/use-product";
 
 function OrderSummaryBox() {
   const navigate = useNavigate();
+
+  const { getAllTypesWithProducts } = useProduct();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,6 +52,7 @@ function OrderSummaryBox() {
 
   useEffect(() => {
     getAllReceiveAddress(authUser.id);
+    getAllTypesWithProducts();
   }, [loading]);
 
   return (

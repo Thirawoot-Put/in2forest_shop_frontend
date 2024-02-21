@@ -20,59 +20,87 @@ function Header() {
           In2Forrest Shop
         </h1>
       </Link>
-      <div className="flex items-center gap-6">
-        <div className="dropdown dropdown-end bg-[#f0f0f0]">
-          <div tabIndex={0} role="button" className=" m-1">
-            <img
-              className="w-8"
-              src="/src/assets//pic/header-footer/profile-header.png"
-              alt="profile"
-            />
+      {authUser ? (
+        <div className="flex items-center gap-6">
+          <div className="dropdown dropdown-end bg-[#f0f0f0]">
+            <div tabIndex={0} role="button" className=" m-1">
+              <img
+                className="w-8"
+                src="/src/assets/pic/header-footer/profile-header.png"
+                alt="profile"
+              />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a onClick={() => navigate("/profile")}>Profile information</a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    logout();
+                    navigate("/login");
+                  }}
+                >
+                  Log out
+                </a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            {authUser ? (
-              <>
+
+          {authUser.role === "CUSTOMER" && (
+            <Link to="/cart">
+              <img
+                className="w-8"
+                src="/src/assets/pic/header-footer/cart-header.png"
+                alt="cart"
+              />
+            </Link>
+          )}
+
+          {authUser.role === "ADMIN" && (
+            <div className="dropdown dropdown-end bg-[#f0f0f0]">
+              <div tabIndex={0} role="button" className=" m-1">
+                <img
+                  className="w-8"
+                  src="/src/assets/pic/header-footer/admin-img.png"
+                  alt="profile"
+                />
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
                 <li>
-                  <a onClick={() => navigate("/profile")}>
-                    Profile information
+                  <a onClick={() => navigate("/admin/product")}>Add product</a>
+                </li>
+                <li>
+                  <a
+                    onClick={() => {
+                      navigate("/admin");
+                    }}
+                  >
+                    Edit & Delete product
                   </a>
                 </li>
                 <li>
                   <a
                     onClick={() => {
-                      logout();
-                      navigate("/login");
+                      navigate("/admin/orders");
                     }}
                   >
-                    Log out
+                    View all orders
                   </a>
                 </li>
-              </>
-            ) : (
-              <li>
-                <a
-                  onClick={() => {
-                    navigate("/login");
-                  }}
-                >
-                  Login
-                </a>
-              </li>
-            )}
-          </ul>
+              </ul>
+            </div>
+          )}
         </div>
-
-        <Link to="/cart">
-          <img
-            className="w-8"
-            src="/src/assets/pic/header-footer/cart-header.png"
-            alt="cart"
-          />
-        </Link>
-      </div>
+      ) : (
+        <button>Login</button>
+      )}
     </header>
   );
 }

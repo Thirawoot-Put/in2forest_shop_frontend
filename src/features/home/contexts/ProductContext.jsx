@@ -1,5 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import * as productApi from "../../../api/product";
+import useCart from "../../../hooks/use-cart";
 
 export const ProductContext = createContext();
 
@@ -7,7 +8,7 @@ export default function UserContextProvider({ children }) {
   const [allTypesWithProducts, setAllTypesWithProducts] = useState([]);
   const [productObj, setProductObj] = useState({});
 
-  const getAllProductTypes = async () => {
+  const getAllTypesWithProducts = async () => {
     const {
       data: { typesWithProducts },
     } = await productApi.getAllTypesWithProducts();
@@ -23,12 +24,17 @@ export default function UserContextProvider({ children }) {
   };
 
   useEffect(() => {
-    getAllProductTypes();
+    getAllTypesWithProducts();
   }, []);
 
   return (
     <ProductContext.Provider
-      value={{ allTypesWithProducts, getProductById, productObj }}
+      value={{
+        allTypesWithProducts,
+        getProductById,
+        productObj,
+        getAllTypesWithProducts,
+      }}
     >
       {children}
     </ProductContext.Provider>

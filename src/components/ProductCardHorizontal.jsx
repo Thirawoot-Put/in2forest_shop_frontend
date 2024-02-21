@@ -14,7 +14,6 @@ function ProductCardHorizontal({
   data = defaultData,
   width = "w-[44rem]",
 }) {
-  console.log(data.status);
   return (
     <div
       className={`${width} h-full ${

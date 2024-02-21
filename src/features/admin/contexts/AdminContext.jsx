@@ -4,6 +4,7 @@ import * as adminApi from "../../../api/admin";
 import * as productApi from "../../../api/product";
 import * as orderApi from "../../../api/order";
 import appendDataWithImage from "../../../utils/appendDataWithImage";
+import { useEffect } from "react";
 
 export const AdminContext = createContext();
 
@@ -59,6 +60,10 @@ export default function AdminContextProvider({ children }) {
     } = await orderApi.adminGetAllOrders();
     setAllOrders(orders);
   };
+
+  useEffect(() => {
+    getAllTypes();
+  }, []);
 
   return (
     <AdminContext.Provider

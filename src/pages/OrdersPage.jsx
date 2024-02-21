@@ -20,8 +20,6 @@ function AdminOrdersPage() {
     }
   }, []);
 
-  console.log(allUserOrders);
-
   return (
     <>
       {loading && <LoadingBar />}
