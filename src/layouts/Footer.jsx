@@ -13,17 +13,17 @@ function Footer() {
         <div className="flex justify-center gap-6">
           <img
             className="w-5"
-            src="/src/assets/facebook-logo.png"
+            src="/src/assets/pic/header-footer/facebook-logo.png"
             alt="fb-logo"
           />
           <img
             className="w-5"
-            src="/src/assets/instagram-logo.png"
+            src="/src/assets/pic/header-footer/instagram-logo.png"
             alt="ig-logo"
           />
           <img
             className="w-5"
-            src="/src/assets/line-logo.png"
+            src="/src/assets/pic/header-footer/line-logo.png"
             alt="line-logo"
           />
         </div>

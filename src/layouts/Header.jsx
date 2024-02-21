@@ -8,11 +8,11 @@ function Header() {
   const { logout, authUser } = useAuth();
 
   return (
-    <header className="flex justify-between h-20 px-16 bg-[#f0f0f0]">
+    <header className="flex justify-between items-center h-20 px-16 bg-[#f0f0f0]">
       <Link to="/" className="flex justify-center items-center gap-1">
         <img
           className="w-14"
-          src="/src/assets/circle-logo.png"
+          src="/src/assets/pic/circle-logo.png"
           alt="logo"
           role="button"
         />
@@ -25,7 +25,7 @@ function Header() {
           <div tabIndex={0} role="button" className=" m-1">
             <img
               className="w-8"
-              src="/src/assets/profile-header.png"
+              src="/src/assets//pic/header-footer/profile-header.png"
               alt="profile"
             />
           </div>
@@ -66,7 +66,11 @@ function Header() {
         </div>
 
         <Link to="/cart">
-          <img className="w-8" src="/src/assets/cart-header.png" alt="cart" />
+          <img
+            className="w-8"
+            src="/src/assets/pic/header-footer/cart-header.png"
+            alt="cart"
+          />
         </Link>
       </div>
     </header>

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { createContext } from "react";
 import * as adminApi from "../../../api/admin";
 import * as productApi from "../../../api/product";
+import * as orderApi from "../../../api/order";
 import appendDataWithImage from "../../../utils/appendDataWithImage";
-import { toast } from "react-toastify";
 
 export const AdminContext = createContext();
 
@@ -19,8 +19,10 @@ const initial = {
 
 export default function AdminContextProvider({ children }) {
   const [product, setProduct] = useState(initial);
-  const [allProductTypes, setAllProductTypes] = useState([]);
+  const [allProductTypes, setAllProductTypes] = useState(null);
   const [entireProduct, setEntireProduct] = useState([]);
+
+  const [allOrders, setAllOrders] = useState([]);
 
   const getAllTypes = async () => {
     const {
@@ -51,6 +53,13 @@ export default function AdminContextProvider({ children }) {
     setProduct(initial);
   };
 
+  const getAllOrders = async () => {
+    const {
+      data: { orders },
+    } = await orderApi.adminGetAllOrders();
+    setAllOrders(orders);
+  };
+
   return (
     <AdminContext.Provider
       value={{
@@ -61,6 +70,8 @@ export default function AdminContextProvider({ children }) {
         handleChange,
         addProduct,
         getAllProduct,
+        getAllOrders,
+        allOrders,
       }}
     >
       {children}

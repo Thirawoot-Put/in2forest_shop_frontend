@@ -15,7 +15,6 @@ function AddProductForm() {
       e.preventDefault();
       setLoading(true);
       await addProduct();
-      console.log(loading);
       toast.success("Add new product success");
     } catch (error) {
       console.log(error);

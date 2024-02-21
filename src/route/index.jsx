@@ -15,6 +15,7 @@ import Footer from "../layouts/Footer";
 import AdminOrdersPage from "../pages/AdminOrdersPage";
 import AdminAddProductPage from "../pages/AdminAddProductPage";
 import AdminEditProductPage from "../pages/AdminEditProductPage";
+import AdminOrderDetailPage from "../pages/AdminOrderDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "admin/orders",
         element: <AdminOrdersPage />,
+      },
+      {
+        path: "admin/orders/:orderId",
+        element: <AdminOrderDetailPage />,
       },
       {
         path: "admin/product",

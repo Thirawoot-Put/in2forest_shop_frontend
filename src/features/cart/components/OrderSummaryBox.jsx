@@ -10,6 +10,7 @@ import useAuth from "../../../hooks/use-auth";
 import useUser from "../../../hooks/use-user";
 import * as orderApi from "../../../api/order";
 import { toast } from "react-toastify";
+import useOrder from "../../../hooks/use-order";
 
 function OrderSummaryBox() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function OrderSummaryBox() {
   const { authUser } = useAuth();
   const { productsInUserCart, subTotal } = useCart();
   const { allAddresses, getAllReceiveAddress } = useUser();
+  const { setTargetOrder } = useOrder();
 
   const handleClickCheckOut = async (e) => {
     try {
@@ -27,10 +29,12 @@ function OrderSummaryBox() {
         toast.error("Please select receiver address before checkout");
         return;
       }
-      const result = await orderApi.createUserOrder({
+      const {
+        data: { newOrder },
+      } = await orderApi.createUserOrder({
         addressId: +selectedAddress,
       });
-      console.log(result);
+      setTargetOrder(newOrder);
       navigate("/payment");
     } catch (error) {
       toast.error(error.response?.data.message);
