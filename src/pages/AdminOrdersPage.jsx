@@ -28,7 +28,9 @@ function AdminOrdersPage() {
           <div>Admin, All orders</div>
           <div className="border rounded-lg px-6">
             {allOrders.length &&
-              allOrders.map((order) => <OrderCard data={order} />)}
+              allOrders.map((order) => (
+                <OrderCard key={order.id} data={order} />
+              ))}
           </div>
         </div>
       </div>
