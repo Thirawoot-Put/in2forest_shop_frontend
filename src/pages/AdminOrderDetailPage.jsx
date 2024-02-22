@@ -42,6 +42,7 @@ function AdminOrderDetailPage() {
             <AdminOrderDetailBox
               orderItems={targetOrder.orderItems}
               payment={targetOrder.payment}
+              targetOrder={targetOrder}
             />
           </div>
         </div>

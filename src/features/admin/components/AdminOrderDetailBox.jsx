@@ -2,9 +2,17 @@ import React from "react";
 import ProductCardHorizontal from "../../../components/ProductCardHorizontal";
 import Button from "../../../components/Button";
 import { Link } from "react-router-dom";
+import useAdmin from "../../../hooks/use-admin";
 
-function AdminOrderDetailBox({ orderItems, payment }) {
-  console.log(orderItems);
+function AdminOrderDetailBox({ orderItems, payment, targetOrder }) {
+  const { approveOrder } = useAdmin();
+
+  const handleApprove = () => {
+    approveOrder(targetOrder.id);
+  };
+
+  console.log(targetOrder);
+
   return (
     <>
       <div className="flex justify-between w-[45rem] border rounded-xl p-4 gap-10">
@@ -28,10 +36,14 @@ function AdminOrderDetailBox({ orderItems, payment }) {
               alt="payment_slip"
             />
           </div>
-          <Button text="lg">Payment</Button>
+          <Link to={"/admin/orders"}>
+            <Button text="lg" onClick={handleApprove}>
+              Approve order
+            </Button>
+          </Link>
           <Link>
             <Button color="secondary" text="lg">
-              Cancel order
+              Delete order
             </Button>
           </Link>
         </div>

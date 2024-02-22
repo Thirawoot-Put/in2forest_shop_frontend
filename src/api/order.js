@@ -14,3 +14,4 @@ export const deleteOrderByUser = (id) => axios.delete(`orders/${id}`);
 // Admin order Api
 export const adminGetAllOrders = () => axios.get("/admin/orders");
 export const adminGetOrderById = (id) => axios.get(`/admin/orders/${id}`);
+export const adminApproveOrder = (id) => axios.patch(`/admin/orders/${id}`);

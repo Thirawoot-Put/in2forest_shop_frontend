@@ -69,6 +69,15 @@ export default function AdminContextProvider({ children }) {
     setTargetOrder(order);
   };
 
+  const approveOrder = async (id) => {
+    const result = await orderApi.adminApproveOrder(id);
+    const obj = { ...targetOrder, status: "APPROVED" };
+    const arr = allOrders.filter((el) => el.id !== +id);
+    arr.unshift(obj);
+    console.log(arr);
+    setAllOrders(arr);
+  };
+
   useEffect(() => {
     getAllTypes();
   }, []);
@@ -87,6 +96,7 @@ export default function AdminContextProvider({ children }) {
         allOrders,
         getOrderById,
         targetOrder,
+        approveOrder,
       }}
     >
       {children}
