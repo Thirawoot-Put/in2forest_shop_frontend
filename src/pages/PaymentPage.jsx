@@ -13,8 +13,6 @@ function PaymentPage() {
   const handleChangeInput = (e) => {
     setPaySlip(e.target.files[0]);
   };
-  console.log(paySlip);
-  console.log(targetOrder);
 
   const handleClickSave = async () => {
     const formData = new FormData();
@@ -27,9 +25,7 @@ function PaymentPage() {
       <div className="font-semibold text-2xl">Thank you for your support</div>
       <div>
         Please upload payment slip for{" "}
-        <span className="font-semibold">
-          {targetOrder?.totalPrice || 999} THB
-        </span>
+        <span className="font-semibold">{targetOrder.totalPrice} THB</span>
       </div>
       <div className="w-64">
         <img

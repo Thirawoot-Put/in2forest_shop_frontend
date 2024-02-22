@@ -1,7 +1,7 @@
 import React from "react";
 
 const defaultData = {
-  mainImage: "/src/assets/default-img.png",
+  mainImage: "/src/assets/pic/homepage/default-img.png",
   id: "id",
   productName: "Product name",
   size: "size",
@@ -13,24 +13,24 @@ function ProductCardHorizontal({
   children,
   data = defaultData,
   width = "w-[44rem]",
+  status,
 }) {
+  let src;
+  if (status === "SOLDOUT") {
+    src = "/src/assets/pic/sample-product/sold-out.jpg";
+  } else if (data.mainImage) {
+    src = data.mainImage;
+  }
+
   return (
     <div
       className={`${width} h-full ${
-        data.status === "SOLDOUT" ? "text-red-500" : ""
+        status === "SOLDOUT" ? "text-red-500" : ""
       }`}
     >
       <div className="card card-side bg-base-100 border-gray-500 h-32 ">
         <div className="rounded-xl flex justify-center items-center">
-          <img
-            className="w-32"
-            src={
-              data.status === "SOLDOUT"
-                ? "src/assets/pic/sample-product/sold-out.jpg"
-                : data.mainImage || "/src/assets/default-img.png"
-            }
-            alt="main-image"
-          />
+          <img className="w-32" src={src} alt="product_image" />
         </div>
         <div className="flex items-center justify-between w-full pl-4 pr-10">
           <div>

@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function OrderCard({ data }) {
+  const navigate = useNavigate();
   return (
     <div className=" flex justify-between items-center gap-20 py-2 border-b">
       <div>
@@ -19,7 +21,12 @@ function OrderCard({ data }) {
             alt="payment-slip"
           />
         </div>
-        <button className="border px-2 rounded-lg bg-gray-300">detail</button>
+        <button
+          className="border px-2 rounded-lg bg-gray-300"
+          onClick={() => navigate(`/orders/${data.id}`)}
+        >
+          detail
+        </button>
       </div>
     </div>
   );

@@ -15,7 +15,12 @@ function CartBox({ onClick }) {
     <div className="w-7/12 border p-4 border-black rounded-2xl min-h-80 flex flex-col">
       {productsInUserCart &&
         productsInUserCart.map((el) => (
-          <ProductCardHorizontal key={el.id} data={el.product} width="w-full">
+          <ProductCardHorizontal
+            key={el.id}
+            data={el.product}
+            status={el.product.status}
+            width="w-full"
+          >
             <button
               className="text-xl text-red-500"
               onClick={(e) => onClick(el.id)}

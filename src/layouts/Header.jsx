@@ -38,6 +38,9 @@ function Header() {
                 <a onClick={() => navigate("/profile")}>Profile information</a>
               </li>
               <li>
+                <a onClick={() => navigate("/orders")}>Orders</a>
+              </li>
+              <li>
                 <a
                   onClick={() => {
                     logout();
