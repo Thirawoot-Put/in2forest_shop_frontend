@@ -24,6 +24,7 @@ export default function AdminContextProvider({ children }) {
   const [entireProduct, setEntireProduct] = useState([]);
 
   const [allOrders, setAllOrders] = useState([]);
+  const [targetOrder, setTargetOrder] = useState({});
 
   const getAllTypes = async () => {
     const {
@@ -61,6 +62,13 @@ export default function AdminContextProvider({ children }) {
     setAllOrders(orders);
   };
 
+  const getOrderById = async (id) => {
+    const {
+      data: { order },
+    } = await orderApi.adminGetOrderById(id);
+    setTargetOrder(order);
+  };
+
   useEffect(() => {
     getAllTypes();
   }, []);
@@ -77,6 +85,8 @@ export default function AdminContextProvider({ children }) {
         getAllProduct,
         getAllOrders,
         allOrders,
+        getOrderById,
+        targetOrder,
       }}
     >
       {children}

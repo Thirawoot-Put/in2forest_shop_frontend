@@ -4,6 +4,7 @@ import useAdmin from "../hooks/use-admin";
 import { useEffect } from "react";
 import LoadingBar from "../components/LoadingBar";
 import { useState } from "react";
+import AdminOrderCard from "../features/admin/components/AdminOrderCard";
 
 function AdminOrdersPage() {
   const { allOrders, getAllOrders } = useAdmin();
@@ -20,6 +21,8 @@ function AdminOrdersPage() {
     }
   }, []);
 
+  console.log(allOrders);
+
   return (
     <>
       {loading && <LoadingBar />}
@@ -29,7 +32,7 @@ function AdminOrdersPage() {
           <div className="border rounded-lg px-6 h-[32rem] overflow-scroll">
             {allOrders.length &&
               allOrders.map((order) => (
-                <OrderCard key={order.id} data={order} />
+                <AdminOrderCard key={order.id} data={order} />
               ))}
           </div>
         </div>
