@@ -16,6 +16,7 @@ import AdminOrdersPage from "../pages/AdminOrdersPage";
 import AdminAddProductPage from "../pages/AdminAddProductPage";
 import AdminEditProductPage from "../pages/AdminEditProductPage";
 import AdminOrderDetailPage from "../pages/AdminOrderDetailPage";
+import AdminRegisterPage from "../pages/AdminRegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
     element: (
       <RedirectAuthenticated>
         <LoginPage />
+      </RedirectAuthenticated>
+    ),
+  },
+  {
+    path: "admin/register",
+    element: (
+      <RedirectAuthenticated>
+        <AdminRegisterPage />
       </RedirectAuthenticated>
     ),
   },

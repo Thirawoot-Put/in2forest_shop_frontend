@@ -120,7 +120,7 @@ function Header() {
           )}
         </div>
       ) : (
-        <button>Login</button>
+        <Link to={"/login"}>Login</Link>
       )}
     </header>
   );

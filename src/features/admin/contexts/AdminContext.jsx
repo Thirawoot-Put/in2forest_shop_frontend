@@ -5,6 +5,7 @@ import * as productApi from "../../../api/product";
 import * as orderApi from "../../../api/order";
 import appendDataWithImage from "../../../utils/appendDataWithImage";
 import { useEffect } from "react";
+import useProduct from "../../../hooks/use-product";
 
 export const AdminContext = createContext();
 
@@ -25,6 +26,8 @@ export default function AdminContextProvider({ children }) {
 
   const [allOrders, setAllOrders] = useState([]);
   const [targetOrder, setTargetOrder] = useState({});
+
+  const { setAllTypesWithProducts } = useProduct();
 
   const getAllTypes = async () => {
     const {
@@ -51,7 +54,10 @@ export default function AdminContextProvider({ children }) {
   const addProduct = async () => {
     const formData = new FormData();
     appendDataWithImage(formData, product);
-    await adminApi.addProduct(formData);
+    const {
+      data: { allProducts },
+    } = await adminApi.addProduct(formData);
+    setAllTypesWithProducts(allProducts);
     setProduct(initial);
   };
 

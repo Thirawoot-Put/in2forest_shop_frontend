@@ -12,6 +12,7 @@ import * as productApi from "../../../api/product";
 import LoadingBar from "../../../components/LoadingBar";
 import { useEffect } from "react";
 import appendDataWithImage from "../../../utils/appendDataWithImage";
+import { toast } from "react-toastify";
 
 function AdminProductCard() {
   const { entireProduct, getAllProduct } = useAdmin();
@@ -28,6 +29,7 @@ function AdminProductCard() {
     try {
       setLoading(true);
       await adminApi.deleteProduct(productId);
+      toast.error("Delete product success");
     } catch (error) {
       console.log(error);
     } finally {
@@ -65,6 +67,7 @@ function AdminProductCard() {
       appendDataWithImage(formData, updateData);
       await adminApi.editProductById(updateData.id, formData);
       handleCloseModal();
+      toast.success("Edit product success");
     } catch (err) {
       console.log(err);
     } finally {

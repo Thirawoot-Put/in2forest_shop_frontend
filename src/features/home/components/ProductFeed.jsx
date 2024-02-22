@@ -21,8 +21,6 @@ function ProductAllSections() {
     }
   }, []);
 
-  console.log(allTypesWithProducts);
-
   return (
     <>
       {loading ? (

@@ -8,6 +8,7 @@ import {
 } from "../../../utils/local-storage";
 import { useEffect } from "react";
 import validateRegister from "../validations/validate-register";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
@@ -49,12 +50,14 @@ export default function AuthContextProvider({ children }) {
     const res = await authApi.register(data);
     setAuthUser(res.data.newUser);
     storeToken(res.data.accessToken);
+    toast.success("Register success");
   };
 
   const login = async (data) => {
     const res = await authApi.login(data);
     setAuthUser(res.data.user);
     storeToken(res.data.token);
+    toast.success("Login success");
   };
 
   const logout = (e) => {

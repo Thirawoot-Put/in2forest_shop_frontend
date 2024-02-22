@@ -4,8 +4,11 @@ import Modal from "../components/Modal";
 import RegisterForm from "../features/auth/components/RegisterForm";
 import { useState } from "react";
 import useAuth from "../hooks/use-auth";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const { open, closeModal } = useAuth();
 
   return (
@@ -24,6 +27,8 @@ function LoginPage() {
             className="w-52"
             src="/src/assets/pic/circle-logo.png"
             alt="logo"
+            role="button"
+            onClick={() => navigate("/")}
           />
         </div>
         <div className="flex overflow-hidden">
