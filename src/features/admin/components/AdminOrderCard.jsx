@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function AdminOrderCard({ data }) {
-  console.log(data);
   const navigate = useNavigate();
+
   return (
     <div className=" flex justify-between items-center gap-20 py-2 border-b">
       <div>

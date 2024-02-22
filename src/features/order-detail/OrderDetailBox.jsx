@@ -64,14 +64,18 @@ function OrderDetailBox() {
               alt="payment_slip"
             />
           </div>
-          <Button text="lg" onClick={handleClickPayment}>
-            Payment
-          </Button>
-          <Link to={"/orders"}>
-            <Button color="secondary" text="lg" onClick={handleClickCancel}>
-              Cancel order
-            </Button>
-          </Link>
+          {userOrder?.status === "PENDING" && (
+            <>
+              <Button text="lg" onClick={handleClickPayment}>
+                Payment
+              </Button>
+              <Link to={"/orders"}>
+                <Button color="secondary" text="lg" onClick={handleClickCancel}>
+                  Cancel order
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>

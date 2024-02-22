@@ -22,45 +22,48 @@ function Header() {
       </Link>
       {authUser ? (
         <div className="flex items-center gap-6">
-          <div className="dropdown dropdown-end bg-[#f0f0f0]">
-            <div tabIndex={0} role="button" className=" m-1">
-              <img
-                className="w-8"
-                src="/src/assets/pic/header-footer/profile-header.png"
-                alt="profile"
-              />
-            </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a onClick={() => navigate("/profile")}>Profile information</a>
-              </li>
-              <li>
-                <a onClick={() => navigate("/orders")}>Orders</a>
-              </li>
-              <li>
-                <a
-                  onClick={() => {
-                    logout();
-                    navigate("/login");
-                  }}
-                >
-                  Log out
-                </a>
-              </li>
-            </ul>
-          </div>
-
           {authUser.role === "CUSTOMER" && (
-            <Link to="/cart">
-              <img
-                className="w-8"
-                src="/src/assets/pic/header-footer/cart-header.png"
-                alt="cart"
-              />
-            </Link>
+            <>
+              <div className="dropdown dropdown-end bg-[#f0f0f0]">
+                <div tabIndex={0} role="button" className=" m-1">
+                  <img
+                    className="w-8"
+                    src="/src/assets/pic/header-footer/profile-header.png"
+                    alt="profile"
+                  />
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a onClick={() => navigate("/profile")}>
+                      Profile information
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={() => navigate("/orders")}>Orders</a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        logout();
+                        navigate("/login");
+                      }}
+                    >
+                      Log out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <Link to="/cart">
+                <img
+                  className="w-8"
+                  src="/src/assets/pic/header-footer/cart-header.png"
+                  alt="cart"
+                />
+              </Link>
+            </>
           )}
 
           {authUser.role === "ADMIN" && (
@@ -76,6 +79,11 @@ function Header() {
                 tabIndex={0}
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
+                <li>
+                  <a onClick={() => navigate("/profile")}>
+                    Profile information
+                  </a>
+                </li>
                 <li>
                   <a onClick={() => navigate("/admin/product")}>Add product</a>
                 </li>
@@ -95,6 +103,16 @@ function Header() {
                     }}
                   >
                     View all orders
+                  </a>
+                </li>
+                <li>
+                  <a
+                    onClick={() => {
+                      logout();
+                      navigate("/login");
+                    }}
+                  >
+                    Log out
                   </a>
                 </li>
               </ul>

@@ -21,8 +21,6 @@ function AdminOrdersPage() {
     }
   }, []);
 
-  console.log(allOrders);
-
   return (
     <>
       {loading && <LoadingBar />}

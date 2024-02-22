@@ -10,13 +10,15 @@ function Button({
   onClick,
   type = "button",
   text = "text-xl",
+  px = "px-12",
 }) {
   const className = `
     btn
     ${color ? colorClass[color] : ""} 
     ${width} 
     ${text}
-    font-bold px-12 py-2 rounded-2xl shadow-[2px_2px_2px_rgb(0,0,0,0.2)]
+    ${px}
+    font-bold py-2 rounded-2xl shadow-[2px_2px_2px_rgb(0,0,0,0.2)]
     `;
   return (
     <button className={className} onClick={onClick} type={type}>

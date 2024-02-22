@@ -5,10 +5,18 @@ import { Link } from "react-router-dom";
 import useAdmin from "../../../hooks/use-admin";
 
 function AdminOrderDetailBox({ orderItems, payment, targetOrder }) {
-  const { approveOrder } = useAdmin();
+  const { approveOrder, deleteOrder, confirmShipping } = useAdmin();
 
   const handleApprove = () => {
     approveOrder(targetOrder.id);
+  };
+
+  const handleDeleteOrder = () => {
+    deleteOrder(targetOrder.id);
+  };
+
+  const handleShippedOrder = () => {
+    confirmShipping(targetOrder.id);
   };
 
   console.log(targetOrder);
@@ -36,16 +44,28 @@ function AdminOrderDetailBox({ orderItems, payment, targetOrder }) {
               alt="payment_slip"
             />
           </div>
-          <Link to={"/admin/orders"}>
-            <Button text="lg" onClick={handleApprove}>
-              Approve order
-            </Button>
-          </Link>
-          <Link>
-            <Button color="secondary" text="lg">
-              Delete order
-            </Button>
-          </Link>
+          {targetOrder?.status === "PENDING" ? (
+            <>
+              <Link to={"/admin/orders"}>
+                <Button text="lg" onClick={handleApprove}>
+                  Approve order
+                </Button>
+              </Link>
+              <Link to={"/admin/orders"}>
+                <Button color="secondary" text="lg" onClick={handleDeleteOrder}>
+                  Delete order
+                </Button>
+              </Link>
+            </>
+          ) : targetOrder?.status === "SHIPPED" ? (
+            ""
+          ) : (
+            <Link to={"/admin/orders"}>
+              <Button px="px-6" text="lg" onClick={handleShippedOrder}>
+                Confirm Shipping
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </>

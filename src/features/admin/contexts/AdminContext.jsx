@@ -70,11 +70,28 @@ export default function AdminContextProvider({ children }) {
   };
 
   const approveOrder = async (id) => {
-    const result = await orderApi.adminApproveOrder(id);
+    const data = { status: "APPROVED" };
+    const result = await orderApi.adminUpdateOrderStatus(id, data);
+    console.log(result);
     const obj = { ...targetOrder, status: "APPROVED" };
     const arr = allOrders.filter((el) => el.id !== +id);
     arr.unshift(obj);
-    console.log(arr);
+    setAllOrders(arr);
+  };
+
+  const deleteOrder = async (id) => {
+    const result = await orderApi.adminDeleteOrder(id);
+    const arr = allOrders.filter((el) => el.id !== +id);
+    setAllOrders(arr);
+  };
+
+  const confirmShipping = async (id) => {
+    const data = { status: "SHIPPED" };
+    const result = await orderApi.adminUpdateOrderStatus(id, data);
+    console.log(result);
+    const obj = { ...targetOrder, status: "SHIPPED" };
+    const arr = allOrders.filter((el) => el.id !== +id);
+    arr.unshift(obj);
     setAllOrders(arr);
   };
 
@@ -97,6 +114,8 @@ export default function AdminContextProvider({ children }) {
         getOrderById,
         targetOrder,
         approveOrder,
+        deleteOrder,
+        confirmShipping,
       }}
     >
       {children}
