@@ -67,7 +67,7 @@ function OrderDetailBox() {
           <Button text="lg" onClick={handleClickPayment}>
             Payment
           </Button>
-          <Link to={"/"}>
+          <Link to={"/orders"}>
             <Button color="secondary" text="lg" onClick={handleClickCancel}>
               Cancel order
             </Button>

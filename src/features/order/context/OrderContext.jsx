@@ -30,6 +30,8 @@ export default function OrderContextProvider({ children }) {
 
   const cancelOrder = async (id) => {
     await orderApi.deleteOrderByUser(id);
+    const arr = allUserOrders.filter((el) => el.id !== +id);
+    setAllUserOrders(arr);
   };
 
   return (

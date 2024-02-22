@@ -18,7 +18,7 @@ function AdminOrdersPage() {
     // } finally {
     //   setLoading(false);
     // }
-  }, [loading]);
+  }, []);
 
   return (
     <>

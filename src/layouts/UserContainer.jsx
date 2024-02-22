@@ -1,14 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
-import Footter from "./Footer";
+import Footer from "./Footer";
 
 function UserContainer() {
   return (
     <div>
       <Header />
       <Outlet />
-      <Footter />
+      <Footer />
     </div>
   );
 }
