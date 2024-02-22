@@ -23,10 +23,6 @@ export default function UserContextProvider({ children }) {
     return productById;
   };
 
-  useEffect(() => {
-    getAllTypesWithProducts();
-  }, []);
-
   return (
     <ProductContext.Provider
       value={{
@@ -34,6 +30,7 @@ export default function UserContextProvider({ children }) {
         getProductById,
         productObj,
         getAllTypesWithProducts,
+        setAllTypesWithProducts,
       }}
     >
       {children}

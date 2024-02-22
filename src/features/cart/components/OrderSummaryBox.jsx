@@ -16,7 +16,7 @@ import useProduct from "../../../hooks/use-product";
 function OrderSummaryBox() {
   const navigate = useNavigate();
 
-  const { getAllTypesWithProducts } = useProduct();
+  const { getAllTypesWithProducts, setAllTypesWithProducts } = useProduct();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -33,11 +33,13 @@ function OrderSummaryBox() {
         return;
       }
       const {
-        data: { newOrder },
+        data: { newOrder, allProducts },
       } = await orderApi.createUserOrder({
         addressId: +selectedAddress,
       });
       setTargetOrder(newOrder);
+      console.log(allProducts);
+      setAllTypesWithProducts(allProducts);
       navigate("/payment");
     } catch (error) {
       toast.error(error.response?.data.message);
