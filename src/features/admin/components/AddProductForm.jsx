@@ -30,7 +30,7 @@ function AddProductForm() {
   return (
     <>
       {loading && <LoadingBar />}
-      <div className="py-8">
+      <div className="py-8 pb-60 pt-20">
         <ProductForm
           title="Add new product"
           onSubmit={handleSubmit}

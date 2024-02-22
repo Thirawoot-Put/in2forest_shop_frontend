@@ -8,7 +8,7 @@ function Header() {
   const { logout, authUser } = useAuth();
 
   return (
-    <header className="flex justify-between items-center h-20 px-16 bg-[#f0f0f0]">
+    <header className="flex justify-between items-center h-20 px-16 bg-[#f0f0f0] fixed top-0 right-0 w-full">
       <Link to="/" className="flex justify-center items-center gap-1">
         <img
           className="w-14"

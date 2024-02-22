@@ -21,7 +21,7 @@ function PaymentPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2 py-8">
+    <div className="flex flex-col items-center justify-center gap-2 pb-52 pt-10">
       <div className="font-semibold text-2xl">Thank you for your support</div>
       <div>
         Please upload payment slip for{" "}

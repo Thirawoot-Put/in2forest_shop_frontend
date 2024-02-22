@@ -11,7 +11,7 @@ function AdminEditProductPage() {
   }, []);
 
   return (
-    <div className="h-screen w-full flex flex-col justify-center items-center pb-4">
+    <div className="h-screen w-full flex flex-col justify-center items-center pb-52 pt-20">
       <ProductList />
     </div>
   );

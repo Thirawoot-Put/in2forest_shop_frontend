@@ -36,9 +36,8 @@ function ProductDetailPage() {
   useEffect(() => {
     getProductById(productId);
   }, []);
-
   return (
-    <div className="flex justify-center items-center w-full py-10">
+    <div className="flex justify-center items-center w-full pb-60 pt-32">
       <div className="flex w-10/12 px-20 gap-32">
         <div className="bg-[#D9D9D9] flex flex-1 justify-center items-center aspect-square rounded-md">
           <img

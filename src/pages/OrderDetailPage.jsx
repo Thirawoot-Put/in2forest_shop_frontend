@@ -26,7 +26,7 @@ function OrderDetailPage() {
       {loading ? (
         <LoadingBar />
       ) : (
-        <div className="flex justify-center items-center py-8">
+        <div className="flex justify-center items-center pb-52 pt-32">
           <div className="flex flex-col gap-2">
             <div>
               <h1 className="text-lg font-semibold">#{userOrder?.id}</h1>

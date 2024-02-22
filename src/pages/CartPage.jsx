@@ -32,7 +32,7 @@ function CartPage() {
   return (
     <>
       {loading && <LoadingBar />}
-      <div className="w-full flex flex-col justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center pb-52 pt-20">
         <div className="flex w-[80rem] flex-col gap-4 py-4">
           <h1 className="font-semibold text-2xl">Your cart</h1>
           <div className="flex gap-10">

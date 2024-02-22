@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="bg-[#f0f0f0] h-64 flex flex-col items-center justify-center gap-10 absolute bottom-0 w-full">
+    <footer className="bg-[#f0f0f0] h-48 flex flex-col items-center justify-center gap-5 fixed bottom-0 w-full">
       <div className="text-center flex flex-col gap-2">
         <h1 className="font-bold text-2xl">IN2FOREST SHOP</h1>
         <p className="w-80 text-sm font-light text-gray-600">

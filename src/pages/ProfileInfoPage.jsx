@@ -46,24 +46,27 @@ function ProfileInfoPage() {
 
   return (
     <>
-      {loading && <LoadingBar />}
-      <div className="flex justify-center items-center py-8">
-        <div className="min-h-64 flex flex-col justify-between">
-          {isEdit ? (
-            <UserInfoForm
-              formName="Edit profile"
-              btnName="Save"
-              onChange={handleChangeInput}
-              onSubmit={handleSubmit}
-            />
-          ) : (
-            <UserInformation
-              userProfile={userProfile}
-              onClickEdit={handleClickEdit}
-            />
-          )}
+      {loading ? (
+        <LoadingBar />
+      ) : (
+        <div className="flex justify-center items-center pb-52 pt-32">
+          <div className="min-h-64 flex flex-col justify-between">
+            {isEdit ? (
+              <UserInfoForm
+                formName="Edit profile"
+                btnName="Save"
+                onChange={handleChangeInput}
+                onSubmit={handleSubmit}
+              />
+            ) : (
+              <UserInformation
+                userProfile={userProfile}
+                onClickEdit={handleClickEdit}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
