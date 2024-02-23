@@ -5,7 +5,7 @@ import ProductFeed from "../features/home/components/ProductFeed";
 
 function HomePage() {
   return (
-    <div className="pb-52 pt-20">
+    <div className="pb-44 pt-20">
       <Hero />
       <LogoList />
       <ProductFeed />

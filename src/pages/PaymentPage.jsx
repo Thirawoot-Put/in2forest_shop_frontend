@@ -35,15 +35,15 @@ function PaymentPage() {
       {loading ? (
         <LoadingBar />
       ) : (
-        <div className="flex flex-col items-center justify-center gap-2 pb-52 pt-10">
-          <div className="font-semibold text-2xl">
+        <div className="flex flex-col items-center justify-center gap-2 pb-52 pt-28">
+          <div className="font-semibold text-xl">
             Thank you for your support
           </div>
           <div>
             Please upload payment slip for{" "}
             <span className="font-semibold">{targetOrder.totalPrice} THB</span>
           </div>
-          <div className="w-64">
+          <div className="w-40">
             <img
               src="/src/assets/pic/payment\qr_prompt-pay.jpg"
               alt="qr-prompt-pay"

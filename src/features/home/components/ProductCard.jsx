@@ -5,7 +5,10 @@ import { Navigate } from "react-router-dom";
 function ProductCard({ product }) {
   return (
     <Link to={`/product/${product.id}`}>
-      <div className="flex flex-col gap-2" role="button">
+      <div
+        className="flex flex-col gap-2 hover:scale-105 ease-out duration-200"
+        role="button"
+      >
         <div className="bg-[#F0EEED] w-[200px] aspect-[2/3] flex justify-center items-center rounded-lg">
           <img
             className="w-32"
