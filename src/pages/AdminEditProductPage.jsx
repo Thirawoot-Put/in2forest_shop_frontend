@@ -4,12 +4,6 @@ import useAdmin from "../hooks/use-admin";
 import { useEffect } from "react";
 
 function AdminEditProductPage() {
-  const { getAllProduct } = useAdmin();
-
-  useEffect(() => {
-    getAllProduct();
-  }, []);
-
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center pb-52 pt-20">
       <ProductList />

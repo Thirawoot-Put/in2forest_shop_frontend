@@ -6,6 +6,7 @@ import * as orderApi from "../../../api/order";
 import appendDataWithImage from "../../../utils/appendDataWithImage";
 import { useEffect } from "react";
 import useProduct from "../../../hooks/use-product";
+import { toast } from "react-toastify";
 
 export const AdminContext = createContext();
 
@@ -20,7 +21,6 @@ const initial = {
 };
 
 export default function AdminContextProvider({ children }) {
-  const [product, setProduct] = useState(initial);
   const [allProductTypes, setAllProductTypes] = useState(null);
   const [entireProduct, setEntireProduct] = useState([]);
 
@@ -43,22 +43,14 @@ export default function AdminContextProvider({ children }) {
     setEntireProduct(allProduct);
   };
 
-  const handleChange = (e) => {
-    if (e.target.name === "mainImage") {
-      setProduct({ ...product, mainImage: e.target.files[0] });
-    } else {
-      setProduct({ ...product, [e.target.name]: e.target.value });
-    }
-  };
-
-  const addProduct = async () => {
+  const addProduct = async (newProduct) => {
     const formData = new FormData();
-    appendDataWithImage(formData, product);
+    appendDataWithImage(formData, newProduct);
     const {
       data: { allProducts },
     } = await adminApi.addProduct(formData);
     setAllTypesWithProducts(allProducts);
-    setProduct(initial);
+    toast.success("Add new product success");
   };
 
   const getAllOrders = async () => {
@@ -108,11 +100,9 @@ export default function AdminContextProvider({ children }) {
   return (
     <AdminContext.Provider
       value={{
-        product,
         allProductTypes,
         entireProduct,
         getAllTypes,
-        handleChange,
         addProduct,
         getAllProduct,
         getAllOrders,
@@ -122,6 +112,7 @@ export default function AdminContextProvider({ children }) {
         approveOrder,
         deleteOrder,
         confirmShipping,
+        setEntireProduct,
       }}
     >
       {children}

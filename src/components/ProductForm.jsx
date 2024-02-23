@@ -3,7 +3,7 @@ import Input from "./Input";
 import SelectTypes from "../features/admin/components/SelectTypes";
 import Button from "./Button";
 
-function ProductForm({ title, onSubmit, onChange, data }) {
+function ProductForm({ title, onSubmit, onChange, data, error }) {
   return (
     <form
       className="flex flex-col items-center py-2"
@@ -19,6 +19,7 @@ function ProductForm({ title, onSubmit, onChange, data }) {
               name="productName"
               onChange={onChange}
               value={data.productName}
+              errorMsg={error?.productName}
             />
           </div>
           <div>
@@ -27,6 +28,7 @@ function ProductForm({ title, onSubmit, onChange, data }) {
               name="size"
               onChange={onChange}
               value={data.size}
+              errorMsg={error?.size}
             />
           </div>
         </div>
@@ -36,6 +38,7 @@ function ProductForm({ title, onSubmit, onChange, data }) {
           width="w-full"
           onChange={onChange}
           value={data.productDetail}
+          errorMsg={error?.productDetail}
         />
         <Input
           title="Defect"
@@ -43,6 +46,7 @@ function ProductForm({ title, onSubmit, onChange, data }) {
           width="w-full"
           onChange={onChange}
           value={data.defect}
+          errorMsg={error?.defect}
         />
         <Input
           title="Price"
@@ -50,14 +54,20 @@ function ProductForm({ title, onSubmit, onChange, data }) {
           width="w-full"
           onChange={onChange}
           value={data.price}
+          errorMsg={error?.price}
         />
-        <SelectTypes onChange={onChange} data={data} />
+        <SelectTypes
+          onChange={onChange}
+          data={data}
+          errorMsg={error?.productTypeId}
+        />
         <div className="pt-6">
           <Input
             type="file"
             name="mainImage"
             width="w-full"
             onChange={onChange}
+            errorMsg={error?.mainImage}
           />
         </div>
         <div className="pt-10">
