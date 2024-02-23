@@ -37,7 +37,13 @@ function AdminProductCard() {
   const handleDeleteProduct = async (productId) => {
     try {
       setLoading(true);
-      await adminApi.deleteProduct(productId);
+      const {
+        data: { deletedProduct },
+      } = await adminApi.deleteProduct(productId);
+      const updateArr = entireProduct.filter(
+        (el) => el.id !== deletedProduct.id
+      );
+      setEntireProduct(updateArr);
       toast.error("Delete product success");
     } catch (error) {
       console.log(error);
